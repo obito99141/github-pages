@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendship Quiz</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center/cover;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            border: 5px dashed #ff69b4;
+        }
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 15px 25px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 18px;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+        .yes { background: #4CAF50; color: white; }
+        .no { background: #F44336; color: white; }
+        .hidden { display: none; }
+        .emoji {
+            font-size: 40px;
+            position: absolute;
+            top: -40px;
+            right: -40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="slide1">
+        <div class="emoji">😊</div>
+        <div class="question">Do you like talking to me?</div>
+        <button class="btn yes" id="yes1" style="top: 50px; left: 100px;">Yes</button>
+        <button class="btn no" onclick="nextSlide(1)">No</button>
+    </div>
+
+    <div class="container hidden" id="slide2">
+        <div class="emoji">🥰</div>
+        <div class="question">You are my best friend, right?</div>
+        <button class="btn yes" id="yes2" style="top: 50px; left: 100px;">Yes</button>
+        <button class="btn no" onclick="nextSlide(2)">No</button>
+    </div>
+
+    <div class="container hidden" id="slide3">
+        <div class="emoji">😢</div>
+        <div class="question">Do you want to leave me?</div>
+        <button class="btn yes" onclick="alert('Yay! You are stuck with me 😆')">Yes</button>
+        <button class="btn no" id="no3" style="top: 50px; right: 100px;">No</button>
+    </div>
+
+    <script>
+        function nextSlide(slideNumber) {
+            document.getElementById('slide' + slideNumber).classList.add('hidden');
+            document.getElementById('slide' + (slideNumber + 1)).classList.remove('hidden');
+        }
+
+        function moveButton(buttonId) {
+            let button = document.getElementById(buttonId);
+            button.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            button.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+        }
+
+        document.getElementById('yes1').addEventListener('mouseover', function() { moveButton('yes1'); });
+        document.getElementById('yes2').addEventListener('mouseover', function() { moveButton('yes2'); });
+        document.getElementById('no3').addEventListener('mouseover', function() { moveButton('no3'); });
+    </script>
+</body>
+</html>
